@@ -45,3 +45,8 @@ function div(num1, num2){
 function mult(num1, num2) {
     return num1 / num2;
 }
+
+console.log(add(1, 2));
+console.log(diff(1, 2));
+console.log(div(4, 2));
+console.log(mult(3, 2));
