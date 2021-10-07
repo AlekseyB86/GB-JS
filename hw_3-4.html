@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>hw_3-4</title>
+    <title>hw_3-6</title>
 </head>
 
 <body>
@@ -45,6 +45,23 @@
             },
         ];
 
+        // Выведем те продукты, у которых есть минимум одно фото
+        let productsWithPhoto = products.filter(function(product) {
+            return product.photos && product.photos.length > 0;
+        });
+        console.log(productsWithPhoto);
+
+        // Отсортируем продукты по их стоимости
+        products.sort(function (product1, product2) {  // сортировка происходит на месте
+            if (product2.price > product1.price) {
+                return -1;
+            }
+            if (product1.price > product2.price) {
+                return 1;
+            }
+            return 0;
+        });
+        console.log(products);
 
     </script>
 </body>
