@@ -75,6 +75,12 @@ const products = {
     ],
 };
 
+const productsClass = document.querySelector('.products');
+const buttons = document.querySelectorAll('button');
+buttons.forEach(function (button) {
+    button.addEventListener('click', clickHandler);
+});
+
 
 /**
  * Эта функция должна вызываться при клике по кнопкам.
@@ -82,11 +88,11 @@ const products = {
  */
 function clickHandler(event) {
     //вам нужно очищать содержимое .products
-    
+    productsClass.innerHTML = "";
     //в showCategory надо передать строку с типом категории, тип берите
     //из атрибута data-type у кнопки, по которой кликнули.
-    
-}
+    showCategory(event.target.dataset.type);
+};
 
 /**
  * Функция берет товары (объекты) из соответствующего массива phones,
@@ -96,8 +102,13 @@ function clickHandler(event) {
  * по которой кликнули.
  */
 function showCategory(category) {
-    
-}
+    const productsInCategory = products[category];
+    let productsMarkup = "";
+    productsInCategory.forEach(function (product) {
+        productsMarkup += getProductMarkup(product);
+    });
+    productsClass.insertAdjacentHTML("afterbegin", productsMarkup);
+};
 
 /**
  * @param {Object} product объект из массива phones, tablets или tv.
@@ -109,5 +120,11 @@ function showCategory(category) {
  * в верху этого файла.
  */
 function getProductMarkup(product) {
+    return `<div class="product">
+        <div>${product.name}</div>
+        <img src="${product.imageUrl}" alt="">
+        <div>${product.price}</div>
+        <a href="https://example.com/producs/${product.id}">Подробнее</a>
+        </div>`;
 
-}
+};
